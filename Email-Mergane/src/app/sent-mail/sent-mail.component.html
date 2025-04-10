@@ -1,0 +1,17 @@
+<div class="mt-5 border" [ngStyle]="{'background-color': colore}">
+    <div class="m-3">
+        <p>{{singola_mail.oggetto}} ---- {{singola_mail.email}}</p>
+        <button (click) = "chiudi_espandi()" class="btn border">{{txt_bottone}}</button>
+        <button (click) = "speciale()" class="btn border">Speciale</button>
+    </div>
+    
+    <div class="m-3">
+        @if(buttone_clk){
+            <div>
+                <p>----------------------------------------</p>
+                <p>{{singola_mail.testo}}</p>
+            </div>
+        }
+    </div>
+    
+</div>
