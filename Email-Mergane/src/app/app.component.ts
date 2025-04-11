@@ -1,30 +1,34 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {Email} from "./sent-mail/email.model";
-import {SentMailComponent} from "./sent-mail/sent-mail.component"
+import { Email } from './sent-mail/email.model';
+import { SentMailComponent } from './sent-mail/sent-mail.component';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SentMailComponent],
+  imports: [SentMailComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'email-mergane';
-  emails:Email[]
+  emails: Email[];
 
-  constructor(){
+  constructor() {
     this.emails = [
-      new Email("gigio@gmail.com", "patate", "Ecco la ricetta delle patate"),
-      new Email("giogio@gmail.com", "arrosto", "Ecco la ricetta dell'arrosto"),
-      new Email("giagio@gmail.com", "orata", "Ecco la ricetta dell'orata")
-    ]
+      new Email("b.mergane2007@gmail.com", "Pokèmon", "Qual'è il tuo pokèmon preferito?"),
+      new Email("mergane.biran@iisgalvanimi.edu.it", "Modifica voto importantissima!", "Prof. Malizia mi deve assolutamente mettere 9.6 invece che 9.3!"),
+      new Email("boh@gmail.com", "Boh", "Boh vedi te")
+    ];
   }
 
-  aggiungiMail(email: HTMLInputElement, oggetto: HTMLInputElement, testo: HTMLInputElement){
-    this.emails.push(new Email(email.value, oggetto.value, testo.value))
-    console.log("elemento aggiunto")
-    email.value = ""
-    oggetto.value = ""
-    testo.value = ""
+  aggiungiMail(email: HTMLInputElement, oggetto: HTMLInputElement, testo: HTMLInputElement) {
+    if (email.value && oggetto.value && testo.value) {
+      this.emails.push(new Email(email.value, oggetto.value, testo.value));
+      console.log("Nuova email aggiunta:", email.value, oggetto.value, testo.value);
+      email.value = '';
+      oggetto.value = '';
+      testo.value = '';
+    } else {
+      alert('Per favore, compila tutti i campi!');
+    }
   }
 }
